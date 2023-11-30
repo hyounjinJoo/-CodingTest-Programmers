@@ -17,20 +17,20 @@ int solution(vector<int> array) {
 			valueAppear[array[index]] += 1;
 		}
 
-		int minValuePos = 0;
-		int foundedMinValue = 0;
+		int maxValuePos = 0;
+		int foundedMaxValue = 0;
 		int countEqualValueAppear = 0;
 
 		++arraySize;
 		for (size_t index = 0; index < 1000; ++index)
 		{
-			if (foundedMinValue < valueAppear[index])
+			if (foundedMaxValue < valueAppear[index])
 			{
-				minValuePos = static_cast<int>(index);
-				foundedMinValue = valueAppear[index];
+				maxValuePos = static_cast<int>(index);
+				foundedMaxValue = valueAppear[index];
 				countEqualValueAppear = 0;
 			}
-			else if (foundedMinValue == valueAppear[index])
+			else if (foundedMaxValue == valueAppear[index])
 			{
 				++countEqualValueAppear;
 			}
@@ -38,7 +38,7 @@ int solution(vector<int> array) {
 
 		if (0 == countEqualValueAppear)
 		{
-			answer = minValuePos;
+			answer = maxValuePos;
 		}
 	}
 
