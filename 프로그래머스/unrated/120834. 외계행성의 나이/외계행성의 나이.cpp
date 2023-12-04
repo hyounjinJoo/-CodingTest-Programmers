@@ -11,7 +11,7 @@ string solution(int age) {
     size_t length = answer.length();
     for(size_t index = 0; index < length; ++index)
     {
-       answer[index] += 49;
+       answer[index] += ('a' - '0');
     }
     
     return answer;
