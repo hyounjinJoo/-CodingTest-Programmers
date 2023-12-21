@@ -5,7 +5,7 @@ using namespace std;
 
 int solution(int n) {
     int answer = 2;
-    for(int integer = 0; integer < 1001; ++integer)
+    for(int integer = 1; integer < 1001; ++integer)
     {
         if(n == integer * integer)
         {
