@@ -1,7 +1,4 @@
-#include <string>
-#include <vector>
 
-using namespace std;
 int memo[100001];
 
 int solution(int n) {
