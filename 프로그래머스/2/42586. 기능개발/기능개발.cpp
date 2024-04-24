@@ -2,30 +2,53 @@
 #include <vector>
 
 using namespace std;
-
+#define DevelopeEnd 100
+#define ReadyToPublish 101
 vector<int> solution(vector<int> progresses, vector<int> speeds) {
 	vector<int> answer;
 
-	int Day = 0;
-	int Max_Day = 0;
-	int FuncCount = progresses.size();
-	for (int FuncIDX = 0; FuncIDX < FuncCount; ++FuncIDX)
+	int developeCount = progresses.size();
+
+	while (false == progresses.empty())
 	{
-		// 일자는 현재 작업진척 / 날짜 + 1
-		Day = ((99 - progresses[FuncIDX]) / speeds[FuncIDX]) + 1;
-
-		if (answer.empty() || Max_Day < Day)
+		for (int funcIDX = 0; funcIDX < developeCount; ++funcIDX)
 		{
-			answer.push_back(1);
+			if (DevelopeEnd > progresses[funcIDX])
+			{
+				progresses[funcIDX] += speeds[funcIDX];
+				if (DevelopeEnd < progresses[funcIDX])
+				{
+					progresses[funcIDX] = DevelopeEnd;
+				}
+			}
 		}
-		else
+		// 작업진행이 ReadyToPublish(=101)인 경우 배열 순회하여 answer에 넣을 값 증가 후 제거
+		if (ReadyToPublish == progresses[0])
 		{
-			++answer.back();
+			int PublishCount = 0;
+			while (ReadyToPublish == progresses[0])
+			{
+				++PublishCount;
+				--developeCount;
+
+				progresses.erase(progresses.begin());
+				speeds.erase(speeds.begin());
+
+				if (true == progresses.empty())
+				{
+					break;
+				}
+			}
+			answer.push_back(PublishCount);
 		}
 
-		if (Max_Day < Day)
+        // 배포는 하루에 한 번만 할 수 있으며, 하루의 끝에 이루어진다고 가정
+		for (int funcIDX = 0; funcIDX < developeCount; ++funcIDX)
 		{
-			Max_Day = Day;
+			if (DevelopeEnd == progresses[funcIDX])
+			{
+				progresses[funcIDX] = ReadyToPublish;
+			}
 		}
 	}
 
