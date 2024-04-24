@@ -6,47 +6,26 @@ using namespace std;
 vector<int> solution(vector<int> progresses, vector<int> speeds) {
 	vector<int> answer;
 
-	int developeCount = progresses.size();
-
-	while (false == progresses.empty())
+	int Day = 0;
+	int Max_Day = 0;
+	int FuncCount = progresses.size();
+	for (int FuncIDX = 0; FuncIDX < FuncCount; ++FuncIDX)
 	{
-		for (int funcIDX = 0; funcIDX < developeCount; ++funcIDX)
+		// 일자는 현재 작업진척 / 날짜 + 1
+		Day = ((99 - progresses[FuncIDX]) / speeds[FuncIDX]) + 1;
+
+		if (answer.empty() || Max_Day < Day)
 		{
-			if (100 > progresses[funcIDX])
-			{
-				progresses[funcIDX] += speeds[funcIDX];
-				if (100 < progresses[funcIDX])
-				{
-					progresses[funcIDX] = 100;
-				}
-			}
+			answer.push_back(1);
 		}
-		// 작업진행이 101인 경우 배열 순회하여 answer에 넣을 값 증가 후 제거
-		if (101 == progresses[0])
+		else
 		{
-			int publishFunction = 0;
-			while (101 == progresses[0])
-			{
-				++publishFunction;
-				--developeCount;
-
-				progresses.erase(progresses.begin());
-				speeds.erase(speeds.begin());
-
-				if (true == progresses.empty())
-				{
-					break;
-				}
-			}
-			answer.push_back(publishFunction);
+			++answer.back();
 		}
 
-		for (int funcIDX = 0; funcIDX < developeCount; ++funcIDX)
+		if (Max_Day < Day)
 		{
-			if (100 == progresses[funcIDX])
-			{
-				progresses[funcIDX] = 101;
-			}
+			Max_Day = Day;
 		}
 	}
 
