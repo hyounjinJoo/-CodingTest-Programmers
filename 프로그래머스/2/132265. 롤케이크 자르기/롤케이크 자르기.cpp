@@ -1,14 +1,14 @@
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 using namespace std;
 
 int solution(vector<int> topping) {
     int answer = 0;
     
-	map<int, int> IronHas;
-	map<int, int> LittleHas;
+	unordered_map<int, int> IronHas;
+	unordered_map<int, int> LittleHas;
 
 	size_t Length = topping.size();
 	for (int Idx = 0; Idx < Length; ++Idx)
