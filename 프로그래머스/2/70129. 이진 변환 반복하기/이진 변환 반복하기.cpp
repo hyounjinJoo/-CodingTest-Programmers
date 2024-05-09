@@ -22,17 +22,13 @@ void ChangeBinary(string& Str)
 	}
 
 	Length = Str.size();
-	string* NewStr = new string();
+	Str.clear();
 	while (Length > 0)
 	{
-		(*NewStr).insert(NewStr->begin(),(Length % 2 == 0 ? '0' : '1'));
+		Str.insert(Str.begin(),(Length % 2 == 0 ? '0' : '1'));
 		Length /= 2;
 	}
 
-	Str = *NewStr;
-
-	delete NewStr;
-	NewStr = nullptr;
 	if ('0' == Str[0])
 	{
 		Str.erase(Str.begin());
