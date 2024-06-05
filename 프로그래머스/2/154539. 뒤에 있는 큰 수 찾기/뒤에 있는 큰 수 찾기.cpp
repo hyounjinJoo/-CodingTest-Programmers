@@ -31,6 +31,8 @@ vector<int> solution(vector<int> _InNumbers) {
 */
 #define NotFound -1
 
+/*
+DP로 푼 것
 vector<int> solution(vector<int> _InNumbers) {
     vector<int> OutAnswer(_InNumbers.size(), NotFound);
     int SizeOfNums = _InNumbers.size();
@@ -68,3 +70,30 @@ vector<int> solution(vector<int> _InNumbers) {
     
     return OutAnswer;
 }
+*/
+
+// Stack 사용
+vector<int> solution(vector<int> _InNumbers)
+{
+    int NumbersCount = _InNumbers.size();
+    vector<int> Answer(NumbersCount, -1);
+    stack<int> NumbersIndexes;
+    
+    for(int Idx = 0; Idx < NumbersCount; ++Idx)
+    {
+        // Stack에 저장되어 있는 이전 인덱스의 숫자가 현재 인덱스의 숫자보다 작다면
+        // Answer 갱신, 갱신이 완료되었으므로 pop() 처리
+        while((false == NumbersIndexes.empty()) &&
+              (_InNumbers[NumbersIndexes.top()] < _InNumbers[Idx]))
+        {
+            Answer[NumbersIndexes.top()] = _InNumbers[Idx];
+            NumbersIndexes.pop();
+        }
+        
+        // 현재 인덱스의 Answer는 뒤에 나온 숫자에 의해 갱신되므로 나중으로 미뤄준다.
+        NumbersIndexes.push(Idx);
+    }
+    
+    return Answer;
+}
+
