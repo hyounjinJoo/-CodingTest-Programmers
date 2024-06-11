@@ -1,11 +1,9 @@
-#include <string>
 #include <vector>
-#include <stack>
-#include <limits>
 
 using namespace std;
 
-vector<int> solution(vector<int> Prices) {
+vector<int> solution(vector<int> Prices) 
+{
     vector<int> Answer;
     int Size = Prices.size();
     
