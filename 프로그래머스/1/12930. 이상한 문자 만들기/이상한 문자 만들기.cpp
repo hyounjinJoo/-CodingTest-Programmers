@@ -12,21 +12,19 @@ string solution(string s) {
         // 공백이 나오면 다음 단어가 시작하는 인덱스로 이동
         if(s[IDX] == ' ')
         {
-            WordIDX = 0;
+            WordIDX = IDX + 1;
             continue;
         }
         
-        for(int AlphabetIDX = IDX + WordIDX; AlphabetIDX < length && s[AlphabetIDX] != ' '; ++AlphabetIDX)
+        if((IDX - WordIDX) % 2 == 0)
         {
-            if(WordIDX++ % 2 == 0)
-            {
-                s[AlphabetIDX] = toupper(s[AlphabetIDX]);
-            }
-            else
-            {
-                s[AlphabetIDX] = tolower(s[AlphabetIDX]);
-            }
+            s[IDX] = toupper(s[IDX]);
         }
+        else
+        {
+            s[IDX] = tolower(s[IDX]);
+        }
+            
     }
     
     answer = s;
