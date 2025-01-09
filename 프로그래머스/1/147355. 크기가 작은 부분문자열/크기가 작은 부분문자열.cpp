@@ -10,11 +10,11 @@ int solution(string t, string p) {
     //         부분 문자열과 p의 값 중 부분 문자열이 더 작은 경우의 횟수를 구한다.
     size_t LengthT = t.length();
     size_t LengthP = p.length();
-    long long ValueP = stol(p);
+    long ValueP = stol(p);
     
     for(size_t IDX = 0; IDX + LengthP <= LengthT; ++IDX)
     {
-        long long ValueT = stol(string(t.substr(IDX, LengthP)));
+        long ValueT = stol(string(t.substr(IDX, LengthP)));
         
         if(ValueT <= ValueP)
         {
