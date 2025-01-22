@@ -5,6 +5,10 @@ using namespace std;
 // 소수의 정의 : 1과 자기 자신으로만 나눌 수 있는 수
 bool IsPrime(int InNumber)
 {
+    // 1이면 소수가 아니므로 거짓이다.
+    if(1 == InNumber)
+        return false;
+    
     bool Result = true;
     // 만약 1이거나 2라면 자기 자신으로 나눌 수 있으므로 참이다.
     // 2부터 N까지 자기 자신 이전까지의 수로 나눌 수 있는지 순회로 검사한다.O(N)
