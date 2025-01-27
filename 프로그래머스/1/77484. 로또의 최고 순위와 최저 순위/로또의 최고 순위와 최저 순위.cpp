@@ -1,4 +1,3 @@
-#include <string>
 #include <vector>
 #include <algorithm>
 
@@ -12,7 +11,9 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
     
     int ZeroHit = 0;
     int NumberHit = 0;
-    for(int Index = 0; Index < lottos.size(); ++Index)
+    
+    int NumberMaxCount = lottos.size();
+    for(int Index = 0; Index < NumberMaxCount; ++Index)
     {
         if(lottos[Index] == 0)
         {
@@ -20,7 +21,7 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
             continue;
         }
         
-        for(int WinNumIndex = 0; WinNumIndex < win_nums.size(); ++WinNumIndex)
+        for(int WinNumIndex = 0; WinNumIndex < NumberMaxCount; ++WinNumIndex)
         {
             if(lottos[Index] == win_nums[WinNumIndex])
             {
@@ -30,11 +31,14 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
         }
     }
     
+    // 전부 다 틀렸을 경우 6등이 나오기 위한 예외처리
     if(ZeroHit == 0 && NumberHit == 0)
     {
         ++NumberHit;
     }
     answer.push_back(7-(ZeroHit + NumberHit));
+    
+    // 모두 지워진 경우 6등이 나오기 위한 예외처리
     if(NumberHit == 0 && ZeroHit == 6)
     {
         ++NumberHit;
