@@ -13,17 +13,17 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
     
     // 학생 수 만큼 배열 선언
     vector<int> Student(n, 1);
-    for(int IDX = 0; IDX < lost.size(); ++IDX)
+    for(int Nth : lost)
     {
-        --Student[lost[IDX] - 1];
+        --Student[Nth - 1];
     }
     
-    for(int IDX = 0; IDX < reserve.size(); ++IDX)
+    for(int Nth : reserve)
     {
-        ++Student[reserve[IDX] - 1];
+        ++Student[Nth - 1];
     }
     
-    for(int IDX = 0; IDX < Student.size(); ++IDX)
+    for(int IDX = 0; IDX < n; ++IDX)
     {
         if(Student[IDX] >= 1)
         {
@@ -36,17 +36,17 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
             --Student[IDX - 1];
             ++Student[IDX];
         }
-        else if(IDX + 1 < Student.size() && Student[IDX + 1] > 1)
+        else if(IDX + 1 < n && Student[IDX + 1] > 1)
         {
             --Student[IDX + 1];
             ++Student[IDX];            
         }        
     }
     
-    int answer = Student.size();
-    for(int IDX = 0; IDX < Student.size(); ++IDX)
+    int answer = n;
+    for(int Nth : Student)
     {
-        if(0 == Student[IDX])
+        if(0 == Nth)
         {
             --answer;
         }
