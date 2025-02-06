@@ -21,11 +21,11 @@ int solution(string s) {
             
             if(IDX + 1 < Length) FirstAlphabet = s[IDX + 1];            
         }
+    }
         
-        if(Same >= 1 && IDX + 1 == Length)
-        {
-            ++Answer;
-        }
+    if(0 < Same)
+    {
+        ++Answer;
     }
     
     return Answer;
