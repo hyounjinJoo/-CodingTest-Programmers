@@ -25,9 +25,7 @@ int solution(vector<int> ingredient) {
     // 상수는 여섯 번째 재료가 쌓였을 때, 세 번째 재료부터 여섯 번째 재료를 이용하여 햄버거를 포장
     // 아홉 번째 재료가 쌓였을 때, 두 번째 재료와 일곱 번째 재료부터 아홉 번째 재료를 이용하여 햄버거를 포장
     
-    // 시간 초과가 나는 걸 보니 stack 문제가 아니다 이거
-    // ingredient를 조회해서 푸는게 나은 방법인 것 같다.
-    
+    // stack 2개를 써서 풀었다.    
     stack<int> Current;
     stack<int> Test;
     for(int& Material : ingredient)
