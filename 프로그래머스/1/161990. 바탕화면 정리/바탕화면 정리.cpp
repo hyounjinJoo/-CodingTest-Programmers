@@ -15,11 +15,11 @@ vector<int> solution(vector<string> wallpaper) {
 
     int MaxPosY = -1;
     int MaxPosX = -1;    
-    for(int PosY = 0; PosY < wallpaper.size(); ++PosY)
+    for(int PosX = 0; PosX < wallpaper.size(); ++PosX)
     {
-        for(int PosX = 0; PosX < wallpaper[0].size(); ++PosX)
+        for(int PosY = 0; PosY < wallpaper[0].size(); ++PosY)
         {
-            if(wallpaper[PosY][PosX] == '#')
+            if(wallpaper[PosX][PosY] == '#')
             {
                 if(MinPosY > PosY)
                 {
@@ -44,10 +44,10 @@ vector<int> solution(vector<string> wallpaper) {
         }
     }
     
-    answer.push_back(MinPosY);
     answer.push_back(MinPosX);
-    answer.push_back(MaxPosY);
+    answer.push_back(MinPosY);
     answer.push_back(MaxPosX);
+    answer.push_back(MaxPosY);
     
     return answer;
 }
